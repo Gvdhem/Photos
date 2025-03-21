@@ -7,10 +7,11 @@
     <style>
         body {
             margin: 0;
-            background-color: black;
-            color: white;
+            background-color: white;
+            color: black;
             font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -18,23 +19,77 @@
         }
         .container {
             width: 100vw;
-            height: 100vh;
+            height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
         }
         .gallery img {
-            max-width: 100%;
+            max-width: 80%;
             height: auto;
             display: block;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            width: 200px;
+            margin-top: 20px;
+        }
+        button {
+            background: none;
+            border: 1px solid black;
+            color: black;
+            padding: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: black;
+            color: white;
+        }
+        .subpages {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .subpages a {
+            color: black;
+            text-decoration: none;
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
+    <div class="subpages">
+        <a href="paris-2025.html">Paris, 2025</a>
+        <a href="girona-2024.html">Girona, 2024</a>
+        <a href="other.html">Other</a>
+    </div>
     <div class="container">
         <div class="gallery">
-            <img src="your-image.jpg" alt="Your Photo">
+            <img id="gallery-image" src="image1.jpg" alt="Your Photo">
         </div>
     </div>
+    <div class="navigation">
+        <button onclick="prevImage()">Back</button>
+        <button onclick="nextImage()">Next</button>
+    </div>
+    <script>
+        const images = ["image1.jpg", "image2.jpg", "image3.jpg"]; // Add your images here
+        let index = 0;
+
+        function updateImage() {
+            document.getElementById("gallery-image").src = images[index];
+        }
+
+        function nextImage() {
+            index = (index + 1) % images.length;
+            updateImage();
+        }
+
+        function prevImage() {
+            index = (index - 1 + images.length) % images.length;
+            updateImage();
+        }
+    </script>
 </body>
 </html>
